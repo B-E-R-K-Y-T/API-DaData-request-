@@ -1,6 +1,8 @@
 import pytest
 import requests
 
+from src.config import settings
+
 
 @pytest.fixture(scope="session")
 def client():
@@ -9,4 +11,4 @@ def client():
 
 @pytest.fixture(scope="session")
 def base_url():
-    return "http://127.0.0.1:8000"
+    return settings.BASE_URL
