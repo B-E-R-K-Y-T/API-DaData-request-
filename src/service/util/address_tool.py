@@ -10,7 +10,7 @@ def get_full_address(data: dict[str, Optional[str]]) -> str:
     :return: Полный адрес, состоящий из непустых значений.
     """
     # Определяем ключи, которые используются для формирования полного адреса
-    target_keys = {
+    target_keys = (
         "postal_code",
         "country",
         "federal_district",
@@ -19,7 +19,7 @@ def get_full_address(data: dict[str, Optional[str]]) -> str:
         "street_with_type",
         "house_type_full",
         "house",
-    }
+    )
 
     # Извлекаем части адреса на основе заданных ключей
     address_parts = (
