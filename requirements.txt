@@ -2,3 +2,5 @@ aiohttp~=3.10.3
 mypy~=1.11.1
 black~=24.8.0
 fastapi[all]~=0.112.0
+pydantic~=2.8.2
+dadata~=21.10.1
