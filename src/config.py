@@ -8,4 +8,4 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=f"./.env")
 
 
-settings = Settings()
+settings = Settings()  # type: ignore

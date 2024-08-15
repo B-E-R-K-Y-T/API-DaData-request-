@@ -5,9 +5,9 @@ from src.service.util.singleton import singleton
 
 
 @singleton
-class AsyncAPIWorker:
+class APIWorker:
     def __init__(self):
         self.__client = DadataAsync(settings.API_KEY)
 
-    async def get_data(self, name: str, lat: float, lon: float):
-        return await self.__client.geolocate(name, lat, lon)
+    async def get_address(self, lat: float, lon: float) -> list[dict]:
+        return await self.__client.geolocate("address", lat, lon)
