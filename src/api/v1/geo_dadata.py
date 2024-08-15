@@ -12,7 +12,7 @@ from src.service.util.address_tool import get_full_address
 router = APIRouter(
     prefix="/geolocate",
 )
-templates = Jinja2Templates(directory="src/templates")
+_templates = Jinja2Templates(directory="src/templates")
 
 _RADIUS_METERS_CONSTRAIN = Query(100, ge=1, le=1000)
 _COUNT_CONSTRAIN = Query(10, ge=1, le=100)
@@ -69,6 +69,6 @@ async def get_address_view(
 
         addresses.append(res)
 
-    return templates.TemplateResponse(
+    return _templates.TemplateResponse(
         request=request, name="address.html", context={"addresses": addresses}
     )
