@@ -3,7 +3,10 @@ from typing import AsyncGenerator, Any
 import aiohttp
 from aiohttp import ClientResponse
 
+from src.service.util.singleton import singleton
 
+
+@singleton
 class Request:
     def __init__(self):
         self.session = aiohttp.ClientSession()
