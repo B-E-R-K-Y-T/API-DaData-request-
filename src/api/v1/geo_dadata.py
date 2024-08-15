@@ -2,6 +2,7 @@ from http import HTTPStatus
 
 from fastapi import APIRouter, Depends, Query, Request, Response
 from fastapi.templating import Jinja2Templates
+from fastapi.responses import HTMLResponse
 
 from src.schemas.geolocate import Suggestion
 from src.service.client.api_worker import APIWorker
@@ -35,7 +36,7 @@ async def get_address(
     "/address_view",
     description="Находит ближайшие адреса (дома, улицы, города) по географическим координатам. "
     "И возвращает HTML. Только для России.",
-    response_model=list[Suggestion],
+    response_class=HTMLResponse,
     status_code=HTTPStatus.OK,
 )
 async def get_address_view(
@@ -45,7 +46,7 @@ async def get_address_view(
     radius_meters: int = _RADIUS_METERS_CONSTRAIN,
     count: int = _COUNT_CONSTRAIN,
     api_worker: APIWorker = Depends(APIWorker),
-) -> Response:
+) -> HTMLResponse:
     data = await api_worker.get_address(lat, lon, radius_meters, count)
     addresses = []
 
