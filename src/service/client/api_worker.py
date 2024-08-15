@@ -28,3 +28,8 @@ class APIWorker:
         return await self.__client.geolocate(
             "address", lat, lon, radius_meters, count=count
         )
+
+
+__all__ = (
+    APIWorker.__name__,
+)

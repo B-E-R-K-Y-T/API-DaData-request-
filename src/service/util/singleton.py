@@ -11,3 +11,8 @@ def singleton(class_):
         return instances[class_]
 
     return getinstance
+
+
+__all__ = (
+    singleton.__name__,
+)

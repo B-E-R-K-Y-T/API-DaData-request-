@@ -30,3 +30,8 @@ def get_full_address(data: dict[str, Optional[str]]) -> str:
     full_address = " ".join(address_parts)
 
     return full_address
+
+
+__all__ = (
+    get_full_address.__name__,
+)
