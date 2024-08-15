@@ -61,7 +61,7 @@ async def get_address_view(
                 "full_address": "Отсутствует",
                 "unrestricted_value": str(item.get("unrestricted_value")).split(","),
             }
-        data: dict[str, Optional[str]] = item.get("data")
+        data: Optional[dict] = item.get("data")
 
         if data is not None:
             # Получаем полный адрес из данных
