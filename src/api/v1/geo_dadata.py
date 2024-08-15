@@ -59,7 +59,7 @@ async def get_address_view(
         res = {
                 "value": item.get("value"),
                 "full_address": "Отсутствует",
-                "unrestricted_value": str(item.get("unrestricted_value")).split(","),
+                "unrestricted_value": item.get("unrestricted_value", "Отсутствует").split(","),
             }
         data: Optional[dict] = item.get("data")
 
