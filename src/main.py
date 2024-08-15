@@ -1,4 +1,6 @@
-from fastapi import FastAPI
+import httpx
+from fastapi import FastAPI, Request
+from fastapi.responses import ORJSONResponse
 
 from src.api.v1.geo_dadata import router as geo_dadata_router
 
@@ -13,3 +15,11 @@ app.include_router(
     geo_dadata_router,
     tags=["Geo data"],
 )
+
+
+@app.exception_handler(httpx.HTTPStatusError)
+async def exception_handler(_: Request, exc: httpx.HTTPStatusError) -> ORJSONResponse:
+    return ORJSONResponse(
+        content=f"Detail: {str(exc)}",
+        status_code=exc.response.status_code,
+    )
