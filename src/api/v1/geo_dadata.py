@@ -51,7 +51,7 @@ async def get_address_view(
     api_worker: APIWorker = Depends(APIWorker),
 ) -> HTMLResponse:
     """Получает данные адресов и формирует HTML-ответ с их представлением."""
-    resp_data = await api_worker.get_address(lat, lon, radius_meters, count)
+    resp_data: list[dict] = await api_worker.get_address(lat, lon, radius_meters, count)
     addresses = []
 
     for item in resp_data:
