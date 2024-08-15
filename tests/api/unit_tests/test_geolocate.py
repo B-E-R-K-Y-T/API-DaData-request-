@@ -4,6 +4,7 @@ import pytest
 
 _MOSCOW_CORDS = (55.878, 37.653)
 _ERROR_SCENARIOS_PARAMS = [
+    # "lat", "lon", "radius_meters", "count"
     (0.0, 2342340.0243234, 1, 1, http.HTTPStatus.BAD_REQUEST),
     (111111.0, 0.0, 1, 1, http.HTTPStatus.BAD_REQUEST),
     (0.0, 0.0, -1, 1, http.HTTPStatus.UNPROCESSABLE_ENTITY),
