@@ -17,7 +17,7 @@ _COUNT_CONSTRAIN = Query(10, ge=1, le=100)
 
 
 @router.get(
-    "/address",
+    "/addresses",
     description="Находит ближайшие адреса (дома, улицы, города) по географическим координатам. Только для России.",
     response_model=list[Suggestion],
     status_code=HTTPStatus.OK,
@@ -33,7 +33,7 @@ async def get_address(
 
 
 @router.get(
-    "/address_view",
+    "/addresses_view",
     description="Находит ближайшие адреса (дома, улицы, города) по географическим координатам. "
     "И возвращает HTML. Только для России.",
     response_class=HTMLResponse,

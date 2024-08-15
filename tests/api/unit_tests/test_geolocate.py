@@ -20,7 +20,7 @@ def test_geolocate_address(
 ):
     args = (
         "GET",
-        f"{base_url}/geolocate/address",
+        f"{base_url}/geolocate/addresses",
     )
 
     assert (
@@ -58,7 +58,7 @@ def test_geolocate_address_fail(
 ):
     args = (
         "GET",
-        f"{base_url}/geolocate/address",
+        f"{base_url}/geolocate/addresses",
     )
 
     assert (
@@ -85,7 +85,7 @@ def test_geolocate_address_view(
 ):
     args = (
         "GET",
-        f"{base_url}/geolocate/address_view",
+        f"{base_url}/geolocate/addresses_view",
     )
 
     assert (
@@ -123,7 +123,7 @@ def test_geolocate_address_view_fail(
 ):
     args = (
         "GET",
-        f"{base_url}/geolocate/address_view",
+        f"{base_url}/geolocate/addresses_view",
     )
 
     assert (
