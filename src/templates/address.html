@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+            {% for item in addresses %}
+            <div>
+                {{ item.value }}
+                <ul>
+                    {% for unrestricted_value in item.unrestricted_value %}
+                        <li> {{ unrestricted_value }} <li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+    </body>
+</html>
