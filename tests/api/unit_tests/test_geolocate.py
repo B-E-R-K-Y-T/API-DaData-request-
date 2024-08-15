@@ -26,6 +26,7 @@ def perform_get_request(client, base_url, endpoint, lat, lon, radius_meters, cou
             "count": count,
         },
     )
+
     return response.status_code
 
 
@@ -43,6 +44,7 @@ def test_geolocate_address(lat, lon, radius_meters, count, base_url, client):
     resp_status_code = perform_get_request(
         client, base_url, "geolocate/addresses", lat, lon, radius_meters, count
     )
+
     assert resp_status_code == http.HTTPStatus.OK
 
 
@@ -56,6 +58,7 @@ def test_geolocate_address_fail(
     resp_status_code = perform_get_request(
         client, base_url, "geolocate/addresses", lat, lon, radius_meters, count
     )
+
     assert resp_status_code == status_code
 
 
@@ -81,4 +84,5 @@ def test_geolocate_address_view_fail(
     resp_status_code = perform_get_request(
         client, base_url, "geolocate/addresses_view", lat, lon, radius_meters, count
     )
+
     assert resp_status_code == status_code
