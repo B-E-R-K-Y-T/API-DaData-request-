@@ -31,6 +31,7 @@ async def get_address(
     count: int = _COUNT_CONSTRAIN,
     api_worker: APIWorker = Depends(APIWorker),
 ) -> list[dict]:
+    """Получает ближайшие адреса по заданным координатам и ограничениям."""
     return await api_worker.get_address(lat, lon, radius_meters, count)
 
 
@@ -49,10 +50,12 @@ async def get_address_view(
     count: int = _COUNT_CONSTRAIN,
     api_worker: APIWorker = Depends(APIWorker),
 ) -> HTMLResponse:
+    """Получает данные адресов и формирует HTML-ответ с их представлением."""
     resp_data = await api_worker.get_address(lat, lon, radius_meters, count)
     addresses = []
 
     for item in resp_data:
+        # Формируем структуру для адреса
         res = {
                 "value": item.get("value"),
                 "full_address": "Отсутствует",
@@ -61,6 +64,7 @@ async def get_address_view(
         data: dict[str, Optional[str]] = item.get("data")
 
         if data is not None:
+            # Получаем полный адрес из данных
             res["full_address"] = get_full_address(data)
 
         addresses.append(res)
