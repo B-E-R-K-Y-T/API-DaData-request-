@@ -1,4 +1,5 @@
 from http import HTTPStatus
+from typing import Optional
 
 from fastapi import APIRouter, Depends, Query, Request, Response
 from fastapi.templating import Jinja2Templates
@@ -6,6 +7,7 @@ from fastapi.responses import HTMLResponse
 
 from src.schemas.geolocate import Suggestion
 from src.service.client.api_worker import APIWorker
+from src.service.util.address_tool import get_full_address
 
 router = APIRouter(
     prefix="/geolocate",
@@ -47,16 +49,21 @@ async def get_address_view(
     count: int = _COUNT_CONSTRAIN,
     api_worker: APIWorker = Depends(APIWorker),
 ) -> HTMLResponse:
-    data = await api_worker.get_address(lat, lon, radius_meters, count)
+    resp_data = await api_worker.get_address(lat, lon, radius_meters, count)
     addresses = []
 
-    for item in data:
-        addresses.append(
-            {
+    for item in resp_data:
+        res = {
                 "value": item.get("value"),
+                "full_address": "Отсутствует",
                 "unrestricted_value": str(item.get("unrestricted_value")).split(","),
             }
-        )
+        data: dict[str, Optional[str]] = item.get("data")
+
+        if data is not None:
+            res["full_address"] = get_full_address(data)
+
+        addresses.append(res)
 
     return templates.TemplateResponse(
         request=request, name="address.html", context={"addresses": addresses}

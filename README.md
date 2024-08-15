@@ -12,6 +12,7 @@
 2. *Configure the .env file*
 3. ```docker build -t <NAME> .```
 4. ```docker run -p 8000:8000 <NAME>```
+5. Open ```127.0.0.1:8000/swagger_api```
 
 ### Other
 
